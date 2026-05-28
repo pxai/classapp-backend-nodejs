@@ -75,17 +75,25 @@ docker compose exec node sh
 
 ### Run tests
 
-Inside the Node container:
+Tests use a separate database (`classapp_test`). Before the suite runs, Jest creates that database if needed, applies the same migrations as dev, and loads the same seed files from `db/seeds/`. Your dev database (`classapp`) is not touched.
+
+Inside the Node container (MySQL must be running):
 
 ```bash
 docker compose exec node npm test
 ```
 
-Locally (with Node installed):
+Locally against Docker MySQL on port 3306:
 
 ```bash
-npm install
-npm test
+npm ci
+MYSQL_HOST=localhost npm test
+```
+
+To seed the test database manually (same SQL as dev):
+
+```bash
+docker compose exec -e NODE_ENV=test node npm run seed
 ```
 
 ## Purge everything

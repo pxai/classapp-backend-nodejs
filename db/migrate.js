@@ -1,22 +1,11 @@
 const fs = require('fs/promises');
 const path = require('path');
 const mysql = require('mysql2/promise');
+const { getDbConfig } = require('./config');
+const { splitStatements } = require('./sql');
 
-function splitStatements(sql) {
-  return sql
-    .split(';')
-    .map((statement) => statement.trim())
-    .filter((statement) => statement.length > 0);
-}
-
-async function migrate() {
-  const db = await mysql.createConnection({
-    host: process.env.MYSQL_HOST,
-    port: Number(process.env.MYSQL_PORT),
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE,
-  });
+async function runMigrations(config = getDbConfig()) {
+  const db = await mysql.createConnection(config);
 
   await db.execute(`
     CREATE TABLE IF NOT EXISTS schema_migrations (
@@ -25,9 +14,7 @@ async function migrate() {
     )
   `);
 
-  const [rows] = await db.query(
-    'SELECT version FROM schema_migrations'
-  );
+  const [rows] = await db.query('SELECT version FROM schema_migrations');
 
   const applied = new Set(rows.map((r) => r.version));
 
@@ -62,10 +49,15 @@ async function migrate() {
   }
 
   await db.end();
-  console.log('Done');
 }
 
-migrate().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+if (require.main === module) {
+  runMigrations()
+    .then(() => console.log('Done'))
+    .catch((err) => {
+      console.error(err);
+      process.exit(1);
+    });
+}
+
+module.exports = { runMigrations };
