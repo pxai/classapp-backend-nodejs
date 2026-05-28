@@ -22,6 +22,43 @@ docker compose up -d
 
 The API is available at http://localhost:3000 (`Hello World`).
 
+### Run migrations
+
+After the stack is up and MySQL is healthy, apply pending SQL migrations (required on first run and whenever new files are added under `db/migrations/`):
+
+```bash
+docker compose exec node npm run migrate
+```
+
+If you see `Cannot find module 'mysql2'`, install dependencies in the container first:
+
+```bash
+docker compose exec node npm ci
+```
+
+Locally (with Node installed and MySQL reachable; set `MYSQL_*` env vars or use Docker’s values with `MYSQL_HOST=localhost`):
+
+```bash
+npm ci
+npm run migrate
+```
+
+### Run seeds
+
+After migrations, load sample data from `db/seeds/`:
+
+```bash
+docker compose exec node npm run seed
+```
+
+Locally (with `MYSQL_*` env vars set):
+
+```bash
+npm run seed
+```
+
+Re-running seeds will insert duplicate rows unless you reset the database.
+
 ### Shell in the Node container
 
 Attach to the running container’s shell:
@@ -53,7 +90,7 @@ npm test
 
 ## Purge everything
 
-Stop containers, remove them, and delete named volumes (MySQL data and `node_modules` volume):
+Stop containers, remove them, and delete named volumes (MySQL data):
 
 ```bash
 docker compose down -v

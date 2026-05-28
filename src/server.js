@@ -7,6 +7,10 @@ app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
+app.get('/health', (req, res) => {
+  res.send({status: 'ok'});
+});
+
 if (require.main === module) {
   app.listen(port, '0.0.0.0', () => {
     console.log(`Server listening on http://0.0.0.0:${port}`);
