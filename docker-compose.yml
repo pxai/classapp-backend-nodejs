@@ -8,7 +8,7 @@ services:
       - "3000:3000"
     stdin_open: true
     tty: true
-    command: sh -c "npm ci && (npm start &) && exec sh"
+    command: sh -c "npm ci && (npm run dev &) && exec sh"
     depends_on:
       mysql:
         condition: service_healthy

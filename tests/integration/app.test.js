@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../src/server');
+const app = require('../../src/server');
 
 describe('GET /', () => {
   it('responds with Hello World', async () => {
@@ -15,6 +15,6 @@ describe('GET /health', () => {
     const response = await request(app).get('/health');
 
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({"status": "ok"});
+    expect(response.body).toEqual({ status: 'ok' });
   });
 });

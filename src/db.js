@@ -15,4 +15,11 @@ function getPool() {
   return pool;
 }
 
-module.exports = { getPool };
+async function closePool() {
+  if (pool) {
+    await pool.end();
+    pool = null;
+  }
+}
+
+module.exports = { getPool, closePool };

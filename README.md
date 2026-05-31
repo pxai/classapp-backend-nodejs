@@ -22,6 +22,16 @@ docker compose up -d
 
 The API is available at http://localhost:3000 (`Hello World`).
 
+In Docker, the server runs with hot reload (`nodemon`): edits under `src/` restart the API automatically.
+
+To run with hot reload outside Docker:
+
+```bash
+npm run dev
+```
+
+For production-style runs without reload, use `npm start`.
+
 ### Run migrations
 
 After the stack is up and MySQL is healthy, apply pending SQL migrations (required on first run and whenever new files are added under `db/migrations/`):
