@@ -56,4 +56,62 @@ describe('coursesController', () => {
       expect(res.send).toHaveBeenCalledWith({});
     });
   });
+
+  describe('create', () => {
+    it('creates a course from the service', async () => {
+      const course = { name: 'Node.js Basics', description: 'Introduction to Node.js' };
+      courseService.create.mockResolvedValue(course);
+
+      const req = { body: { params: { name: course.name, description: course.description } } };
+      const res = mockResponse();
+
+      await coursesController.create(req, res);
+
+      expect(courseService.create).toHaveBeenCalledWith(course.name, course.description);
+      expect(res.send).toHaveBeenCalledWith(course);
+    });
+  });
+
+  describe('update', () => {
+    it('updates a course from the service', async () => {
+      const course = { name: 'Node.js Basics changed', description: 'Introduction to Node.js changed' };
+      const id = '1';
+      courseService.update.mockResolvedValue(course);
+
+      const req = { body: { params: { name: course.name, description: course.description } }, params: { id } };
+      const res = mockResponse();
+
+      await coursesController.update(req, res);
+
+      expect(courseService.update).toHaveBeenCalledWith(id, course.name, course.description);
+      expect(res.send).toHaveBeenCalledWith(course);
+    });
+  });
+
+  describe('delete', () => {
+    it('deletes a course from the service', async () => {
+      const id = '1';
+      const course = { id: 1, name: 'Node.js Basics', description: 'Introduction to Node.js' };
+      courseService.destroy.mockResolvedValue(course);
+
+      const req = { params: { id } };
+      const res = mockResponse();
+
+      await coursesController.destroy(req, res);
+
+      expect(courseService.destroy).toHaveBeenCalledWith(id);
+      expect(res.send).toHaveBeenCalledWith(course);
+    });
+
+    it('sends an empty object when the course is missing', async () => {
+      courseService.destroy.mockResolvedValue(null);
+
+      const req = { params: { id: '999' } };
+      const res = mockResponse();
+
+      await coursesController.destroy(req, res);
+
+      expect(res.send).toHaveBeenCalledWith({});
+    });
+  });
 });

@@ -33,7 +33,6 @@
         "testMatch": ["<rootDir>/tests/integration/**/*.test.js"],
         "setupFilesAfterEnv": ["<rootDir>/tests/integration/setup.js"],
         "globalSetup": "<rootDir>/tests/integration/globalSetup.js",
-        "globalTeardown": "<rootDir>/tests/integration/globalTeardown.js",
         "maxWorkers": 1
       }
     ]
