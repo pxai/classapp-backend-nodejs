@@ -3,26 +3,26 @@ const path = require('path');
 const { getPool } = require('../db');
 
 const findAllCoursesSql = fs.readFileSync(
-  path.join(__dirname, 'sql/findAllCourses.sql'),
+  path.join(__dirname, 'sql/courses/findAllCourses.sql'),
   'utf8'
 );
 const findCourseByIdSql = fs.readFileSync(
-  path.join(__dirname, 'sql/findCourseById.sql'),
+  path.join(__dirname, 'sql/courses/findCourseById.sql'),
   'utf8'
 );
 
 const createCourseSql = fs.readFileSync(
-  path.join(__dirname, 'sql/createCourse.sql'),
+  path.join(__dirname, 'sql/courses/createCourse.sql'),
   'utf8'
 );
 
 const updateCourseSql = fs.readFileSync(
-  path.join(__dirname, 'sql/updateCourse.sql'),
+  path.join(__dirname, 'sql/courses/updateCourse.sql'),
   'utf8'
 );
 
 const deleteCourseSql = fs.readFileSync(
-  path.join(__dirname, 'sql/deleteCourse.sql'),
+  path.join(__dirname, 'sql/courses/deleteCourse.sql'),
   'utf8'
 );
 

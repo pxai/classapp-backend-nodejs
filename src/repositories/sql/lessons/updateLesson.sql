@@ -1,0 +1,1 @@
+UPDATE TABLE course set name = ?, description = ? where id = ?
