@@ -59,31 +59,31 @@ describe('lessonsController', () => {
 
   describe('create', () => {
     it('creates a lesson from the service', async () => {
-      const lesson = { name: 'Node.js Basics', description: 'Introduction to Node.js' };
+      const lesson = { name: 'Node.js Basics', description: 'Introduction to Node.js', courseId: 1 };
       lessonService.create.mockResolvedValue(lesson);
 
-      const req = { body: { params: { name: lesson.name, description: lesson.description } } };
+      const req = { body: { params: { name: lesson.name, description: lesson.description, courseId: lesson.courseId } } };
       const res = mockResponse();
 
       await lessonsController.create(req, res);
 
-      expect(lessonService.create).toHaveBeenCalledWith(lesson.name, lesson.description);
+      expect(lessonService.create).toHaveBeenCalledWith(lesson.name, lesson.description, lesson.courseId);
       expect(res.send).toHaveBeenCalledWith(lesson);
     });
   });
 
   describe('update', () => {
     it('updates a lesson from the service', async () => {
-      const lesson = { name: 'Node.js Basics changed', description: 'Introduction to Node.js changed' };
+      const lesson = { name: 'Node.js Basics changed', description: 'Introduction to Node.js changed', courseId: 1 };
       const id = '1';
       lessonService.update.mockResolvedValue(lesson);
 
-      const req = { body: { params: { name: lesson.name, description: lesson.description } }, params: { id } };
+      const req = { body: { params: { name: lesson.name, description: lesson.description, courseId: lesson.courseId } }, params: { id } };
       const res = mockResponse();
 
       await lessonsController.update(req, res);
 
-      expect(lessonService.update).toHaveBeenCalledWith(id, lesson.name, lesson.description);
+      expect(lessonService.update).toHaveBeenCalledWith(id, lesson.name, lesson.description, lesson.courseId);
       expect(res.send).toHaveBeenCalledWith(lesson);
     });
   });
@@ -91,7 +91,7 @@ describe('lessonsController', () => {
   describe('delete', () => {
     it('deletes a lesson from the service', async () => {
       const id = '1';
-      const lesson = { id: 1, name: 'Node.js Basics', description: 'Introduction to Node.js' };
+      const lesson = { id: 1, name: 'Node.js Basics', description: 'Introduction to Node.js', courseId: 1 };
       lessonService.destroy.mockResolvedValue(lesson);
 
       const req = { params: { id } };

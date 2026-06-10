@@ -6,10 +6,10 @@ describe('GET /lessons', () => {
     const response = await request(app).get('/lessons');
 
     expect(response.status).toBe(200);
-    expect(response.body).toHaveLength(3);
+    expect(response.body).toHaveLength(6);
     expect(response.body[0]).toMatchObject({
-      name: 'Node.js Basics',
-      description: 'Introduction to Node.js',
+      name: 'Intro to Node',
+      description: 'What Node.js is',
     });
   });
 });
@@ -21,7 +21,7 @@ describe('GET /lessons/:id', () => {
     expect(response.status).toBe(200);
     expect(response.body).toMatchObject({
       id: 1,
-      name: 'Node.js Basics',
+      name: 'Intro to Node',
     });
   });
 

@@ -11,14 +11,14 @@ async function show(req, res) {
 }
 
 async function create(req, res) {
-  const { name, description} = req.body.params;
-  const lesson = await lessonService.create(name, description);
+  const { name, description, courseId} = req.body.params;
+  const lesson = await lessonService.create(name, description, courseId);
   res.send(lesson ?? {});
 }
 
 async function update(req, res) {
-  const { name, description} = req.body.params;
-  const lesson = await lessonService.update(req.params.id, name, description);
+  const { name, description, courseId} = req.body.params;
+  const lesson = await lessonService.update(req.params.id, name, description, courseId);
   res.send(lesson ?? {});
 }
 

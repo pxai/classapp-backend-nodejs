@@ -36,14 +36,14 @@ async function findAll() {
   return rows;
 }
 
-async function create (name, description) {
+async function create (name, description, courseId) {
   const id = Math.random();
-  const row = await getPool.query(createLessonSql, [id, name, description])
+  const row = await getPool.query(createLessonSql, [id, name, description, courseId])
   return row;
 }
 
-async function update (id, name, description) {
-  const row = await getPool.query(updateLessonSql, [id, name, description])
+async function update (id, name, description, courseId) {
+  const row = await getPool.query(updateLessonSql, [id, name, description, courseId])
   return row;
 }
 

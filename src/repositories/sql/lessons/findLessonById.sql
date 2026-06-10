@@ -1,1 +1,1 @@
-SELECT * FROM courses WHERE id = ?
+SELECT * FROM lessons WHERE id = ?

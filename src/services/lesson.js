@@ -9,12 +9,12 @@ function findAll () {
   return lessonsRepository.findAll();
 }
 
-function create (name, description) {
-  return lessonsRepository.create(name, description);
+function create (name, description, courseId) {
+  return lessonsRepository.create(name, description, courseId);
 }
 
-function update (id, name, description) {
-  return lessonsRepository.update(id, name, description);
+function update (id, name, description, course_id) {
+  return lessonsRepository.update(id, name, description, course_id);
 }
 
 function destroy (id) {

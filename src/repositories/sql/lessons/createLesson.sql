@@ -1,1 +1,1 @@
-CREATE courses (id, name, description) VALUES (?, ?, ?);
+CREATE courses (id, name, description, course_id) VALUES (?, ?, ?, ?, ?);

@@ -1,1 +1,1 @@
-DELETE FROM courses WHERE ID = ?
+DELETE FROM lessons WHERE ID = ?

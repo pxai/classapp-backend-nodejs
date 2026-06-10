@@ -1,1 +1,1 @@
-UPDATE TABLE course set name = ?, description = ? where id = ?
+UPDATE TABLE lessons set name = ?, description = ?, course_id = ? where id = ?
