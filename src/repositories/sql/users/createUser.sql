@@ -1,0 +1,1 @@
+CREATE users (id, email, password, description) VALUES (?, ?, ?, ?);

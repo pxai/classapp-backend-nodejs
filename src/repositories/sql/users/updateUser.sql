@@ -1,0 +1,1 @@
+UPDATE TABLE users set description = ?, email = ? where id = ?
