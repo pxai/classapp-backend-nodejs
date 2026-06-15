@@ -1,0 +1,1 @@
+CREATE domains (id, name, description) VALUES (?, ?, ?);

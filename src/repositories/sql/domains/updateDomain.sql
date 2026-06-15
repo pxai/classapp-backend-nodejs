@@ -1,0 +1,1 @@
+UPDATE TABLE domains set name = ?, description = ? where id = ?

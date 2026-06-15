@@ -8,6 +8,7 @@ async function resetSeededTables(config = getDbConfig()) {
   await db.query('TRUNCATE TABLE lessons');
   await db.query('TRUNCATE TABLE courses');
   await db.query('TRUNCATE TABLE users');
+  await db.query('TRUNCATE TABLE domains');
   await db.query('SET FOREIGN_KEY_CHECKS = 1');
   await db.end();
 }
