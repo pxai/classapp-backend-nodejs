@@ -1,0 +1,1 @@
+SELECT * FROM permissions WHERE domain_id = ?

@@ -1,0 +1,1 @@
+UPDATE TABLE permissions SET role = ? WHERE domain_id = ? AND user_id = ?

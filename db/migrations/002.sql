@@ -9,7 +9,7 @@ CREATE TABLE permissions (
   domain_id BIGINT UNSIGNED NOT NULL,
   user_id BIGINT UNSIGNED NOT NULL,
   role INTEGER NOT NULL,
-  CHECK (role IN (1, 2, 3)),
+  CHECK (role IN (0, 1, 2)),
     CONSTRAINT fk_permissions_domain
       FOREIGN KEY (domain_id)
       REFERENCES domains(id)

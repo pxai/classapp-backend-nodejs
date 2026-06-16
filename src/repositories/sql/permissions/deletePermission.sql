@@ -1,0 +1,1 @@
+DELETE FROM permissions where domain_id = ? and user_id = ?

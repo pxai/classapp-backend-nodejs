@@ -6,6 +6,7 @@ const coursesRoutes = require('./routes/courses');
 const lessonsRoutes = require('./routes/lessons');
 const usersRoutes = require('./routes/users');
 const domainsRoutes = require('./routes/domains');
+const permissionsRoutes = require('./routes/permissions');
 
 app.get('/', (req, res) => {
   res.send('Hello World');
@@ -19,6 +20,7 @@ app.use('/courses', coursesRoutes);
 app.use('/lessons', lessonsRoutes);
 app.use('/users', usersRoutes);
 app.use('/domains', domainsRoutes)
+app.use('/permissions', permissionsRoutes)
 
 if (require.main === module) {
   app.listen(port, '0.0.0.0', () => {

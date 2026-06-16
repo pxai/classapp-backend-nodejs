@@ -1,0 +1,1 @@
+INSERT INTO permissions (domain_id, user_id, role)  VALUES (?, ?, ?);
