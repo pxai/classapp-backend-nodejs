@@ -2,7 +2,7 @@ const { Certificate } = require('node:crypto');
 const permissionService = require('../services/permission');
 
 async function show(req, res) {
-  const { domain_id, user_id } = req.body.params;
+  const { domain_id, user_id } = req.params;
   const permission = await permissionService.find(domain_id, user_id);
   res.send(permission ?? {});
 }
